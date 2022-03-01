@@ -23,6 +23,7 @@ import {
 import {TUI_FLOATING_PRECISION} from '@taiga-ui/kit/constants';
 import {TuiKeySteps} from '@taiga-ui/kit/types';
 import {getPrecision} from '@taiga-ui/kit/utils';
+import {TextMaskConfig} from 'angular2-text-mask';
 
 export function quantumAssertion(quantum: number): boolean {
     return quantum > 0;
@@ -93,23 +94,24 @@ export abstract class AbstractTuiInputSlider<T>
     abstract get showMinLabel(): boolean;
     abstract get showMaxLabel(): boolean;
 
-    mask: TuiMapper<number, TuiTextMaskOptions> = (quantum: number, min: number) => ({
-        mask: tuiCreateNumberMask({
-            allowNegative: min < 0,
-            allowDecimal: !Number.isInteger(quantum),
-            decimalSymbol: this.numberFormat.decimalSeparator,
-            thousandSymbol: this.numberFormat.thousandSeparator,
-            decimalLimit: getPrecision(quantum),
-        }),
-        pipe: tuiCreateAutoCorrectedNumberPipe(
-            0,
-            this.numberFormat.decimalSeparator,
-            this.numberFormat.thousandSeparator,
-            undefined,
-            min < 0,
-        ),
-        guide: false,
-    });
+    mask: TuiMapper<number, TextMaskConfig> = (quantum: number, min: number) =>
+        ({
+            mask: tuiCreateNumberMask({
+                allowNegative: min < 0,
+                allowDecimal: !Number.isInteger(quantum),
+                decimalSymbol: this.numberFormat.decimalSeparator,
+                thousandSymbol: this.numberFormat.thousandSeparator,
+                decimalLimit: getPrecision(quantum),
+            }),
+            pipe: tuiCreateAutoCorrectedNumberPipe(
+                0,
+                this.numberFormat.decimalSeparator,
+                this.numberFormat.thousandSeparator,
+                undefined,
+                min < 0,
+            ),
+            guide: false,
+        } as TuiTextMaskOptions as unknown as TextMaskConfig);
 
     @HostBinding('class._segmented')
     get segmented(): boolean {

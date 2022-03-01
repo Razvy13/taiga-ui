@@ -12,7 +12,7 @@ import {TuiPoint} from '@taiga-ui/core';
     encapsulation,
 })
 export class TuiLineChartExample5 {
-    readonly values = [
+    readonly values: TuiPoint[][] = [
         [
             [50, 50],
             [100, 75],

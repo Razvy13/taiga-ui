@@ -46,9 +46,13 @@ export class ExampleTuiIslandComponent {
 
     hoverable = false;
 
-    readonly textAlignVariants = ['left', 'right', 'center'];
+    readonly textAlignVariants: ('left' | 'right' | 'center')[] = [
+        'left',
+        'right',
+        'center',
+    ];
 
-    textAlign = this.textAlignVariants[0];
+    textAlign: 'left' | 'right' | 'center' = this.textAlignVariants[0];
 
     readonly sizeVariants: ReadonlyArray<TuiSizeS | TuiSizeL> = ['s', 'm', 'l'];
 

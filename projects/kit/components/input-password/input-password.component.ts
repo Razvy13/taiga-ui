@@ -14,6 +14,7 @@ import {
     TUI_FOCUSABLE_ITEM_ACCESSOR,
     TuiContextWithImplicit,
     TuiFocusableElementAccessor,
+    TuiInputTypeT,
     TuiNativeFocusableElement,
     tuiPure,
 } from '@taiga-ui/cdk';
@@ -119,8 +120,14 @@ export class TuiInputPasswordComponent
         return this.getContext(this.textfieldSize.size);
     }
 
-    get inputType(): string {
+    get inputType(): TuiInputTypeT {
         return this.isPasswordHidden || !this.interactive ? 'password' : 'text';
+    }
+
+    $explicit(content: PolymorpheusContent) {
+        return content as PolymorpheusContent<
+            TuiContextWithImplicit<TuiSizeS | TuiSizeL>
+        >;
     }
 
     onValueChange(textValue: string) {

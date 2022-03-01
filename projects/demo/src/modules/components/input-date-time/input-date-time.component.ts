@@ -68,7 +68,7 @@ export class ExampleTuiInputDateTimeComponent extends AbstractExampleTuiControl 
         [this.today.append({day: -1}), new TuiTime(12, 20)],
     ];
 
-    min = this.minVariants[0];
+    min: TuiDay = this.minVariants[0] as TuiDay;
 
     readonly maxVariants = [
         TUI_LAST_DAY,
@@ -78,7 +78,7 @@ export class ExampleTuiInputDateTimeComponent extends AbstractExampleTuiControl 
         [this.today.append({day: +1}), new TuiTime(16, 20)],
     ];
 
-    max = this.maxVariants[0];
+    max: TuiDay = this.maxVariants[0] as TuiDay;
 
     defaultActiveYearMonthVariants = [
         TuiMonth.currentLocal(),

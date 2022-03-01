@@ -48,4 +48,8 @@ export class TuiTrComponent<T> {
         @Inject(forwardRef(() => TuiTbodyComponent))
         private readonly body: TuiTbodyComponent<T>,
     ) {}
+
+    $string(key: keyof T | string) {
+        return key as string;
+    }
 }

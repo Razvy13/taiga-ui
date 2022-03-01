@@ -2,10 +2,10 @@
 <ng-container *ngIf="heads$ | async as headings">
     <ng-container
         *ngFor="let key of table.columns"
-        [ngTemplateOutlet]="headings[key]?.template || plain"
+        [ngTemplateOutlet]="headings[$string(key)]?.template || plain"
     >
         <ng-template #plain>
-            <th *ngIf="!th && !heads.length" tuiTh>{{ key }}</th>
+            <th *ngIf="!th && !heads.length" tuiTh>{{ $string(key) }}</th>
         </ng-template>
     </ng-container>
 </ng-container>

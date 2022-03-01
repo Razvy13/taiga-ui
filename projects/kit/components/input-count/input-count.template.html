@@ -25,7 +25,7 @@
     <ng-content></ng-content>
     <ng-content select="input" ngProjectAs="input"></ng-content>
 </tui-primitive-textfield>
-<ng-container *ngIf="!buttonsHidden && (minusTexts$ | async) as texts">
+<ng-container *ngIf="(!buttonsHidden && (minusTexts$ | async)) as texts">
     <section class="buttons">
         <button
             tuiIconButton
@@ -35,7 +35,7 @@
             class="button button_plus"
             [icon]="iconUp"
             [appearance]="options.appearance"
-            [title]="texts[0]"
+            [title]="$any(texts)[0]"
             [disabled]="plusButtonDisabled"
             [focusable]="false"
             (mousedown)="onButtonMouseDown($event, plusButtonDisabled)"
@@ -51,7 +51,7 @@
             [appearance]="options.appearance"
             [disabled]="minusButtonDisabled"
             [focusable]="false"
-            [title]="texts[1]"
+            [title]="$any(texts)[1]"
             (mousedown)="onButtonMouseDown($event, minusButtonDisabled)"
             (click)="decreaseValue()"
         ></button>

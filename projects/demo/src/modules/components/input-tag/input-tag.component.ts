@@ -6,8 +6,10 @@ import {
     ALWAYS_FALSE_HANDLER,
     ALWAYS_TRUE_HANDLER,
     TuiBooleanHandler,
+    TuiHandler,
 } from '@taiga-ui/cdk';
 import {TuiHorizontalDirection, TuiSizeL, TuiSizeS} from '@taiga-ui/core';
+import {TuiStringifiableItem} from '@taiga-ui/kit';
 
 import {default as exampleModule} from '!!raw-loader!./examples/import/import-module.txt';
 import {default as exampleHtml} from '!!raw-loader!./examples/import/insert-template.txt';
@@ -79,9 +81,9 @@ export class ExampleTuiInputTagComponent extends AbstractExampleTuiControl {
 
     separator = this.separatorVariants[0];
 
-    readonly iconVariants = ['tuiIconSearchLarge'];
+    readonly iconVariants: readonly string[] = ['tuiIconSearchLarge'];
 
-    icon: 'tuiIconSearchLarge' | null = null;
+    icon: string | null = null;
 
     readonly iconAlignVariants: ReadonlyArray<TuiHorizontalDirection> = ['left', 'right'];
 
@@ -112,5 +114,9 @@ export class ExampleTuiInputTagComponent extends AbstractExampleTuiControl {
         item => item[0] === 'T',
     ];
 
-    disabledItemHandler = this.disabledItemHandlerVariants[0];
+    disabledItemHandler: TuiHandler<string | TuiStringifiableItem<unknown>, boolean> =
+        this.disabledItemHandlerVariants[0] as TuiHandler<
+            string | TuiStringifiableItem<unknown>,
+            boolean
+        >;
 }

@@ -1,7 +1,7 @@
 <tui-hosted-dropdown
     class="hosted"
     [canOpen]="interactive"
-    [content]="dropdown"
+    [content]="$explicit(dropdown)"
     [open]="open && interactive"
     (openChange)="onOpenChange($event)"
 >

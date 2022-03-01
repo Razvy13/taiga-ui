@@ -42,4 +42,8 @@ export class TuiThGroupComponent<T> {
         @Inject(forwardRef(() => TuiTableDirective))
         readonly table: TuiTableDirective<T>,
     ) {}
+
+    $string(key: keyof T | string) {
+        return key as string;
+    }
 }

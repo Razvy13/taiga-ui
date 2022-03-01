@@ -14,7 +14,7 @@ import {AbstractTuiHint} from '@taiga-ui/core/abstract';
 import {TuiPointerHintDirective} from '@taiga-ui/core/directives/pointer-hint';
 import {TuiMedia} from '@taiga-ui/core/interfaces';
 import {TUI_MEDIA} from '@taiga-ui/core/tokens';
-import {TuiDirection, TuiHintModeT} from '@taiga-ui/core/types';
+import {TuiBrightness, TuiDirection, TuiHintModeT} from '@taiga-ui/core/types';
 import {Observable} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
@@ -83,7 +83,7 @@ export class TuiHintBoxComponent {
     }
 
     @HostBinding('attr.data-mode')
-    get mode(): TuiHintModeT | null {
+    get mode(): TuiHintModeT | TuiBrightness | null {
         return this.hint.mode;
     }
 

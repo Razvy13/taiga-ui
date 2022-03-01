@@ -7,7 +7,7 @@
 </ng-template>
 
 <ng-template
-    [tuiDialogOptions]="{ size: 's', header: header }"
+    [tuiDialogOptions]="$any({ size: 's', header: header })"
     [(tuiDialog)]="open"
 >
     <div tuiCarouselButtons class="wrapper" (touchstart.passive.stop)="0">

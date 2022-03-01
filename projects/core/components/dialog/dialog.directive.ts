@@ -15,6 +15,6 @@ import {TuiDialogService} from './dialog.service';
     inputs: ['options: tuiDialogOptions', 'open: tuiDialog'],
     outputs: ['openChange: tuiDialogChange'],
 })
-export class TuiDialogDirective<T> extends AbstractTuiDialogDirective<
-    TuiDialogOptions<T>
+export class TuiDialogDirective extends AbstractTuiDialogDirective<
+    TuiDialogOptions<unknown>
 > {}

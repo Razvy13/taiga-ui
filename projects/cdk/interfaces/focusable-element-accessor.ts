@@ -1,6 +1,8 @@
 import {Observable} from 'rxjs';
 
-export interface TuiNativeFocusableElement extends Element, HTMLOrSVGElement {}
+interface TuiNativeElement extends Element, HTMLOrSVGElement {}
+
+export type TuiNativeFocusableElement = TuiNativeElement & HTMLElement;
 
 /**
  * Public interface for any focusable component or directive

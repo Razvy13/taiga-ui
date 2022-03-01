@@ -11,6 +11,7 @@ import {
     TuiStringHandler,
     TuiStringMatcher,
 } from '@taiga-ui/cdk';
+import {TuiValueContentContext} from '@taiga-ui/core';
 import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 
 import {AbstractExampleTuiControl} from '../abstract/control';
@@ -38,7 +39,9 @@ class Account {
 })
 export class ExampleTuiComboBoxComponent extends AbstractExampleTuiControl {
     @ViewChild('valueTemplateContent')
-    private readonly valueTemplateRef: PolymorpheusContent = '';
+    private readonly valueTemplateRef: PolymorpheusContent<
+        TuiValueContentContext<Account>
+    > = '';
 
     readonly exampleForm = import('!!raw-loader!./examples/import/declare-form.txt');
 
@@ -103,9 +106,7 @@ export class ExampleTuiComboBoxComponent extends AbstractExampleTuiControl {
 
     stringify = this.stringifyVariants[0];
 
-    readonly strictMatcherVariants: ReadonlyArray<TuiStringMatcher<
-        Account | string
-    > | null> = [
+    readonly strictMatcherVariants: readonly (TuiStringMatcher<Account> | null)[] = [
         TUI_STRICT_MATCHER,
         (item, search, stringify) =>
             Number.parseInt(stringify(item).match(/\d+/g)![0], 10) ===
@@ -113,7 +114,8 @@ export class ExampleTuiComboBoxComponent extends AbstractExampleTuiControl {
         null,
     ];
 
-    strictMatcher = this.strictMatcherVariants[0];
+    strictMatcher: TuiStringMatcher<Account> | null = this
+        .strictMatcherVariants[0] as TuiStringMatcher<Account> | null;
 
     readonly identityMatcherVariants: ReadonlyArray<TuiIdentityMatcher<Account>> = [
         (item1, item2) => item1 === item2,
@@ -124,7 +126,7 @@ export class ExampleTuiComboBoxComponent extends AbstractExampleTuiControl {
 
     readonly control = new FormControl(null, Validators.required);
 
-    get valueContent(): PolymorpheusContent {
+    get valueContent(): PolymorpheusContent<TuiValueContentContext<Account>> {
         return this.valueTemplateRef && this.selectedValueTemplate
             ? this.valueTemplateRef
             : '';

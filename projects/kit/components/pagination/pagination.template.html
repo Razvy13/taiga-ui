@@ -1,5 +1,7 @@
 <div class="content" (tuiActiveZoneChange)="onActiveZone($event)">
-    <ng-container *ngIf="sizeM && (texts$ | async) as texts; else smallButtons">
+    <ng-container
+        *ngIf="(sizeM && (texts$ | async)) as texts; else smallButtons"
+    >
         <button
             tuiIconButton
             type="button"
@@ -8,7 +10,7 @@
             appearance="flat"
             icon="tuiIconChevronLeft"
             class="button"
-            [title]="texts[0]"
+            [title]="$any(texts)[0]"
             [disabled]="arrowIsDisabledLeft"
             [focusable]="false"
             (click)="onArrowClick('left')"
@@ -49,7 +51,7 @@
             appearance="flat"
             icon="tuiIconChevronRight"
             class="button"
-            [title]="texts[1]"
+            [title]="$any(texts)[1]"
             [disabled]="arrowIsDisabledRight"
             [focusable]="false"
             (click)="onArrowClick('right')"

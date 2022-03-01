@@ -72,10 +72,11 @@
                 [style.bottom.%]="getBottom(point[1])"
             ></div>
             <ng-template #hint>
+                <!-- TODO: remove $any after upgrade angular to 10+ -->
                 <div
                     polymorpheus-outlet
                     class="t-text"
-                    [content]="computedHint"
+                    [content]="$any(computedHint)"
                     [context]="getContentContext(point)"
                 ></div>
             </ng-template>

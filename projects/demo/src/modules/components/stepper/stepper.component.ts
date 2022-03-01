@@ -40,7 +40,7 @@ export class ExampleTuiStepperComponent {
 
     icon = this.iconVariants[0];
 
-    readonly stateVariants = ['normal', 'pass', 'error'];
+    readonly stateVariants: ('normal' | 'pass' | 'error')[] = ['normal', 'pass', 'error'];
 
     state = this.stateVariants[0];
 }
