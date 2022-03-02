@@ -13,7 +13,7 @@ const NON_ZERO_DIGIT = /[1-9]/;
 
 /**
  * Adaptation for {@link https://github.com/text-mask/text-mask/tree/master/addons#createnumbermask `createNumberMask`}
- * @todo TODO: autocCorrectDecimalSymbol is no longer needed. Remove it in 3.0
+ * TODO: autoCorrectDecimalSymbol is no longer needed. Remove it in 3.0
  */
 export function tuiCreateNumberMask({
     allowDecimal = false,
@@ -24,6 +24,7 @@ export function tuiCreateNumberMask({
     requireDecimal = false,
     allowNegative = false,
     integerLimit = 0,
+    nativeInput,
 }: TuiNumberMaskOptions = {}): TuiTextMaskListHandler {
     tuiAssert.assert(Number.isInteger(decimalLimit));
     tuiAssert.assert(decimalLimit >= 0);
@@ -31,6 +32,23 @@ export function tuiCreateNumberMask({
     tuiAssert.assert(integerLimit >= 0);
 
     return (rawValue, {previousConformedValue}) => {
+        const needReplaceDot =
+            rawValue &&
+            decimalSymbol === ',' &&
+            thousandSymbol != decimalSymbol &&
+            rawValue.includes('.');
+
+        if (needReplaceDot) {
+            const caret = nativeInput?.selectionStart ?? 0;
+
+            rawValue = rawValue.replace('.', ',');
+
+            if (nativeInput) {
+                // need to return position after character replacement
+                setTimeout(() => nativeInput?.setSelectionRange(caret, caret));
+            }
+        }
+
         if (previousConformedValue && requireDecimal) {
             const conformedWithoutSeparator = rawValue.split(thousandSymbol).join('');
             const previousConformedValueWithoutDecimalSymbolAndSeparator =

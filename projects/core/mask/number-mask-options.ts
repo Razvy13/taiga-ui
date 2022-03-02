@@ -9,4 +9,5 @@ export interface TuiNumberMaskOptions {
     readonly requireDecimal?: boolean;
     readonly allowNegative?: boolean;
     readonly integerLimit?: number;
+    readonly nativeInput?: HTMLInputElement | null;
 }
