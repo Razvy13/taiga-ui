@@ -1,3 +1,4 @@
+export * from './editor-colors';
 export * from './editor-extensions';
 export * from './editor-styles';
 export * from './i18n';

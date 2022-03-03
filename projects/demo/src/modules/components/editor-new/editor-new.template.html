@@ -13,6 +13,25 @@
             changes
         </tui-notification>
 
+        <h3 i18n>DI-tokens:</h3>
+        <dl i18n>
+            <dt><code>TUI_EDITOR_DEFAULT_COLORS</code></dt>
+            <dd class="tui-space_bottom-5">
+                map of colors in toolbar's dropdowns with color-selection.
+
+                <p>
+                    The token accepts
+                    <code>ReadonlyMap&lt;string, string&gt;</code>
+                    : the
+                    <strong>key</strong>
+                    is the name of the color (used only for hint and
+                    accessibility), the
+                    <strong>value</strong>
+                    – HTML color code.
+                </p>
+            </dd>
+        </dl>
+
         <tui-doc-example
             id="basic"
             i18n-heading
